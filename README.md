@@ -3,6 +3,41 @@ This Jupyter notebook was developed for Undergraduate Cyber Warfare (UCWT) stude
 
 Understanding this code and completion of these exercise does not constitute sufficient preparation for the completion of the 17X course.
 
+# Prerequisites
+
+The most current version of Python (3.11 at the time of commit): https://www.python.org/downloads/
+
+The most current version of PowerShell 7 for Windows (7.3): https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.3
+
+The most current version of .NET SDK (blocked on AWAKEN): https://dotnet.microsoft.com/en-us/download
+
+# Localhost Setup
+
+1. Open PowerShell
+   
+2. Install powershell_kernel using the following command:
+> pip install powershell_kernel
+
+3. Register the powershell_kernel with the jupyter lab using the folloing command:
+> python -m powershell_kernel.install
+
+4. To open a new Jupyter Lab, run:
+> jupyter lab
+
+5. The PowerShell Kernel should now be registered and you can make or open a PowerShell Notebook:
+
+![image](https://github.com/gmjohnson17/PowerShell-Labs/assets/146036376/706ce89b-8fad-4bae-96b5-2710262693f8)
+
+## Troubleshooting
+
+If you cannot get the program "pip" to run, you may need to adjust your Execution path. This can be done with the following command and restarting PowerShell:
+> setx PATH "%PATH%;C:\%%\Python\Python311\Scripts\"
+
+Note: the %% represents the path to the Python folder. It may vary based on your install location
+
+If you cannot get "python" to run from PowerShell, you may need to adjust your Execution Path again to:
+> setx PATH "%PATH%;C:\%%\Python\Python311\"
+
 # Contributors
 Author: Graham Johnson
 
