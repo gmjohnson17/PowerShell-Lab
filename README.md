@@ -26,7 +26,7 @@ The most current version of .NET SDK (blocked on AWAKEN): https://dotnet.microso
 
 5. The PowerShell Kernel should now be registered and you can make or open a PowerShell Notebook:
 
-![image](https://github.com/gmjohnson17/PowerShell-Labs/assets/146036376/706ce89b-8fad-4bae-96b5-2710262693f8)
+![image](https://github.com/gmjohnson17/PowerShell-Lab/assets/146036376/fdbc7cc9-2b06-4663-b160-58129fdd0c3f)
 
 ## Troubleshooting
 
