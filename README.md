@@ -38,6 +38,18 @@ Note: the %% represents the path to the Python folder. It may vary based on your
 If you cannot get "python" to run from PowerShell, you may need to adjust your Execution Path again to:
 > setx PATH "%PATH%;C:\%%\Python\Python311\"
 
+# Online Setup
+
+## Google Colab
+
+You can run the Notebook online using Google Colab (Google Account required to edit/run) here: https://colab.research.google.com/?utm_source=scs-index
+
+You can either download the notebook locally and upload it or link directly to this GitHuh: https://github.com/gmjohnson17/PowerShell-Lab/
+
+To link to this GitHub select File > Open > GitHub > Paste the above link > Select the Notebook
+
+![image](https://github.com/gmjohnson17/PowerShell-Lab/assets/146036376/a46357e8-2251-47b7-b485-6bdf47134f43)
+
 # Contributors
 Author: Graham Johnson
 
