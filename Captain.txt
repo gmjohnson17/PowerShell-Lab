@@ -1,0 +1,4 @@
+<_io.TextIOWrapper 
+name='Captain.txt' 
+mode='w' 
+encoding='cp1252'> 

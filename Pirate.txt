@@ -1,0 +1,60 @@
+a:ah
+actual:genuine
+am:be
+are:be
+back:aft
+been:'twere
+big:vast
+boy:lad
+cheat:hornswaggle
+cheater:hornswaggler
+clean:swab
+crew:hands
+emergency:quandary
+excuse:arr
+floor:deck
+food:grub
+foreward:fore
+friend:mate
+front:fore
+girl:lass
+hotel:fleabag inn
+hello:ahoy
+hey:avast
+is:be
+kitchen:galley
+lady:beauty
+lawyer:foul blaggart
+left:port
+liar:scallywag
+madam:proud beauty
+man:mate
+money:loot
+my:me
+only:nuthin' but
+path:gangway
+professor:foul blaggart
+quick:smart
+quickly:smartly
+restroom:head
+reward:bounty
+right:starboard
+rum:grog
+sailor:swabbie
+sailors:swabbies
+ship:galleon
+sir:captain
+steal:plunder
+stop:belay
+storage:hold
+stuff:booty
+surprise:shiver me timbers
+test:trial
+the:th'
+tidy:shipshape
+whip:flog
+wow:blimey
+work:duty
+yes:aye
+you:ye
+your:yer
