@@ -1,0 +1,1582 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":["c#","cs"],"languageName":"C#","name":"csharp"},{"aliases":["f#","fs"],"languageName":"F#","name":"fsharp"},{"aliases":[],"languageName":"HTML","name":"html"},{"aliases":[],"languageName":"HTTP","name":"http"},{"aliases":["js"],"languageName":"JavaScript","name":"javascript"},{"aliases":[],"languageName":"KQL","name":"kql"},{"aliases":[],"languageName":"Mermaid","name":"mermaid"},{"aliases":["powershell"],"languageName":"PowerShell","name":"pwsh"},{"aliases":[],"languageName":"SQL","name":"sql"},{"aliases":[],"name":"value"}]}}
+
+#!markdown
+
+# Introduction to Scripting - Day 1
+This Jupyter lab was developed to accompany the 17X Block III, PowerShell, course.
+
+#!markdown
+
+## Lesson 1 - Introduction to PowerShell
+
+### About PowerShell
+
+PowerShell is a Command Line shell and scripting language that enables local and remote Windows system administration. 
+
+PowerShell is also authorized for the AFNet and is used for AFNet management, so all Cyber AFSCs should have a basic understanding of PowerShell.
+
+### PowerShell ISE
+
+PowerShell Integrated Scripting Environment (ISE) is a lightweight development environment for coding PowerShell scripts. PowerShell ISE is:
+- A user friendly GUI
+- Allows for the development and execution of multiple scripts
+- Permits debugging through breakpoints, spell checking, etc.
+
+#!markdown
+
+## Lesson 2 - Planning
+
+#!markdown
+
+### Planning Overview
+
+Planning is the process of breaking down an idea or requirement into functional code.
+
+There are multiple ways to plan your code, including function diagrams and pseudocode. For more complex projects, one matra is: "days of coding can save you hours of planning", so take planning seriously. It can save a lot of time down the road.
+
+### Function Diagrams
+
+Function Diagrams have multiple forms, but at their simplist they break down how you anticipate your code to function and are best for visual learners or non-coders. For example, the following diagram depicts how a simple function to compare two numbers and print the larger number would work:
+
+As you can see, even very simple functions can be expressed with several blocks.
+
+If you would like to know more about the Pros, Cons, and Best Practices of Functional Diagrams, you can review this article here: https://www.zenflowchart.com/guides/flowcharts-in-programming
+
+### Pseudocode
+
+Pseudocode is a method of writing down how a segment of code or function will work in plain English. 
+
+Taking the above functional diagram example, here is some Pseudocode:
+1. Receive User Input for Num1
+2. Receive User Input for Num2
+3. If Num1 is greater than Num2 then print Num1
+4. Else, print Num2
+
+#!pwsh
+
+# Function Pseudocode
+# Get user input > num1
+# Get user input > num2
+# Check if num1 > num2
+# Print the higher number
+
+#!markdown
+
+## Lesson 3 - Variables
+
+### What is a variable?
+
+A variable is a reference to some assigned value. A value can be manually set by a programmer, manipulated by a program, or input by the user.
+
+In PowerShell, variable names always start with a "$". 
+
+When naming a variable, follow the following guidelines:
+- Choose a name that makes sense in the context of your code.
+- Use a consistent naming convention (such as snake_case or camelCase)
+
+Note: In PowerShell, variables names are NOT case sensitive.
+
+#!pwsh
+
+# Example of assigning a variable
+$var = 33
+Write-Output $var
+
+# Demonstration that variable names are not case sensitive
+$VaR = 11
+Write-Output $vAR
+
+#!markdown
+
+### Variable Types
+
+The following variable types will be discussed:
+- Boolean (True/False)
+- Strings (text)
+- Numbers (integers, i.e. 1...1000, and decimals, i.e. 3.141)
+- Arrays (lists or collections of variables)
+- Hashtables (a list or array of key:value pairs) - Not covered in this course
+
+Note: PowerShell variables are typically implicitly case (at assignment). We will discuss implicit vs. explicit type casting later. 
+
+#!pwsh
+
+# Example variable assignments
+$numStudents = 17
+$studentName = "Bobby Hill"
+
+# typing the variable name (after assignment) .GetType() will output the variable type
+Write-Output $numStudents.GetType().Name
+
+# blank line
+Write-Output ""
+
+# Typing the variable name itself will output the assigned value
+$studentName
+
+#!markdown
+
+#### Variable Assignment Practice
+
+In the cell below, create and assign three variables. For now, don't worry about their type. 
+
+#!pwsh
+
+# Practice here
+
+#!markdown
+
+#### Booleans
+
+Boolean values are either \\$True or \\$False. Booleans are used for comparison operations, such as asking if 1 is greater than 2 (1 > 2 = \\$False).
+
+Note: \\$True and \\$False are themselves variables and require a "\\$" to assign them properly. 
+
+#!pwsh
+
+$b = $False
+$b.GetType().Name
+
+#!markdown
+
+#### Strings
+
+Strings are text values, such as "This is a string". Strings are assigned using either double (") or single (') quotes.
+
+#!pwsh
+
+# Example Strings
+$str1 = "This is a string"
+$str2 = "Also a string"
+$str3 = 'string'
+
+# Note that strings are only treated like text, so using mathmatical operations on two strings won't work as expects
+$a = "5" + "4"
+Write-Output $a
+
+# Characters in a string can be accessed using brackets []
+# [0] returns the first character, [n] will get the nth character
+$str1[0]
+
+# Sub-strings (multiple characters) can be accessed with the .Substring(start, stop) method, where start = 
+$str1.Substring(0,6)
+
+# PowerShell has specific string methods, which can be viewed here
+
+#!markdown
+
+More information on Strings and String methods (extra nerd data) can be found here: https://learn.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-string-substitutions?view=powershell-7.3 
+
+#!markdown
+
+#### Numbers
+
+In PowerShell, the most common types of numbers are:
+- Integers - Whole numbers
+- Floats/Double - Decimal numbers
+
+#!pwsh
+
+# Define two variables, $x and $pi
+$x = 1
+$pi = 3.14
+
+# Expected output: Integer (Int32)
+Write-Output $x.GetType().Name
+
+# Add x and pi
+$x = $x + $pi
+
+# demonstrate that $x is now a decimal number (double)
+Write-OUtput $x
+Write-Output $x.GetType().Name
+
+#!markdown
+
+More information on Numbers (extra nerd data) can be found here: https://devblogs.microsoft.com/scripting/understanding-numbers-in-powershell/ 
+
+#!markdown
+
+### Arrays
+
+Arrays are multiple, comma seperated values. Like other variables in PowerShell, arrays are not typed so you can have an array of Strings, Numbers, and Boolean values. 
+
+Arrays are used as ordered lists of variables and are created by assigning one variable multiple values or listing multiple values in a "@()".
+
+Individual array values can be accessed using brackets, such as arr[0]
+
+#!pwsh
+
+# Example Arrays
+
+# Prime numbers
+$primes = @(3, 5, 7, 11, 13, 17, 23)
+
+# three stooges
+$stooges = "Larry", "Curly", "Moe"
+
+# user data
+$user_data = "Nope", 54, "M", "`"Special`""
+
+# empty array
+$arr = @()
+
+# Example of accessing an array's data
+$user_data[0]
+
+#!markdown
+
+#### Range Operator
+
+One item that helps with arrays is the Range operator (i..j). It can be used to create Integer arrays and access multiple array values at once
+
+#!pwsh
+
+# Range operator examples
+$a = 0..3
+
+$a
+
+# Range can increment both forwards and backwards
+$b = 8..5
+
+$b
+
+# Range can be used to access multiple array values
+$stooges[0..1]
+
+#!markdown
+
+Special notes on index:
+- Array values can be accessed in any order, separating values by commas like: arr[i, j, k, i]
+- The last item in an array can be accessed using [-1]
+- Individual array values can be updated using arr[n] = new_value
+
+Additional information on arrays can be found here (extra nerd data): https://learn.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-arrays?view=powershell-7.3
+
+#!markdown
+
+### Type Casting
+
+PowerShell has two types of "type casting":
+- Implicit: PowerShell assigns a variable type based on what it thinks is best for the input
+- Explicit: The programmer dictates the required variable type
+
+#### Implicit Type Casting Example
+
+#!pwsh
+
+# Using the Read-Host command, get an input from the user and output its type
+# Note: this won't work in your notebook, you need to copy it to a terminal
+$n = "String"
+$n.GetType().Name
+
+#!markdown
+
+#### Explicit Type Casting
+
+#!pwsh
+
+# Explicit type casting can be done using [vartype] before the variable name or input function
+
+# Example 1
+[int]$num = "17"
+
+$num
+$num.GetType().Name
+
+# Example 2
+$num2 = [double]("20.17")
+
+$num2
+$num2.GetType().Name
+
+# Example 3 - Explicit type case for mathmatical operation
+$num3 = $num + [int]$num2
+
+$num3
+$num3.GetType().Name
+
+#!markdown
+
+### Lesson 3 Knowledge Check
+
+#!markdown
+
+Though Exercises: 
+- What is the difference between "7" and 7?
+- What is the difference between assigning $x = 
+    - 1,2,3
+    - "1, 2, 3"
+    - "1", "2", "3"
+
+#!markdown
+
+## Lesson 4 - PowerShell Operators
+
+#!markdown
+
+In this lesson we will discuss the following operators, which are used to manipulate or compare data (variables). Operators are key to any program. 
+
+PowerShell has operators for the following types of operations (and more):
+- Arithmetic/Unary
+- Assignment
+- Comparison
+
+#!markdown
+
+### Arithmetic/Unary Operators
+
+Arithmetic/Unary operators are specialized for mathematics. They follow the standard order of operation (PEMDAS). 
+
+| Operator | Name | Example | Example Output |
+|---| --- | --- | ---|
+| + | Add | 1 + 2 | 3 |
+| - | Subtract | 7 - 2 | 5 | 
+| * | Multiply | 3 * 4 | 12 | 
+| / | Divide | 9 / 3 | 3 |
+| % | Modulo Divide (Remainder) | 5 % 3 | 2 |
+| ++ | Increment (add 1) | 8++ | 9 |
+| -- | Decrement (subtract one) | 9-- | 8 |
+
+#!pwsh
+
+# Example Arithmetic
+$x, $y, $z = 3, 4, 5
+
+# add x and y
+$x + $y
+
+# multiply y and z
+$y * $z
+
+# longer mathmatical operation
+$x + $y * $z - $x % $y
+
+# add $x to itself + 1
+$x = $x + 1
+
+# add 1 to $x (equivalent to x = x + 1), $x-- subtracts 1
+$x++
+$x
+
+# example of shortened operations (+=, -=, *=, /=, and %= all work)
+$x -= 2
+$x
+
+# example of a shortened operation using another variable
+$x *= $y
+$x
+
+#!markdown
+
+### Comparison Operators
+
+#!markdown
+
+Comparison operators are used to compare the values assigned to two variables. Once the operator has assessed the comparison, it will return a Boolean value (True/False). 
+
+Comparison operations are frequently used to make decisions for Flow Control, which will be discussed on Day 2. 
+
+PowerShell supports the following Comparison Operators:
+| Operator | Description | Example | Example Output |
+|---| --- | --- | --- |
+| -eq | Equal (to) | 5 -eq 5 | $True |
+| -ne | Not Equal (to) | 5 -ne 5  | $False |
+| -gt | Greater than | 7 -gt 5 | $True |
+| -ge | Greater than or equal to | 5 -ge 5 | $True |
+| -lt | Less than | 5 -lt 5 | $False |
+| -le | Less than or equal to |  5 -le 5 | $True |
+
+#!pwsh
+
+# Comparison Examples
+$x = 9
+$y = 11
+
+# Check x equals y
+$x -eq $y
+
+# Check x < y
+$x -lt $y
+
+# Check x > y
+$x -gt $y
+
+#!markdown
+
+### Logical Operators
+
+#!markdown
+
+Logical operators are used to compare the values assigned to two or more variables or comparison statements. Like comparison operators, logical operators return a Boolean value (True/False). 
+
+Like comparison operations, logical operators are also frequently used to make decisions for Flow Control, which will be discussed on Day 2. 
+
+PowerShell supports the following logical operators:
+| Operator | Description | Example | Example Output |
+|---| --- | --- | --- |
+| -and | And: Returns \\$True if both statements are \\$True | \\$True -and \\$False | \\$False |
+| -or (!) | Or: Returns \\$True if either statement is \\$True | \\$True -or \\$False | \\$True |
+| -xor | Exclusive Or: Returns \\$True if either statement is \\$True, but not both | \\$True -xor \\$True | \\$False |
+| -not | Not: Returns the opposite of a statement's value | -not \\$True | \\$False |
+| -in | In: Returns if the input variable is in the array | \\$x -in \\$y | \\$True |
+
+---
+
+The output of logical operators can be represented with Truth tables. For example, here is the Truth table for AND:
+| A | B | Output |
+|---| --- | --- |
+| \\$True | \\$True | \\$True |
+| \\$True | \\$False | \\$False |
+| \\$False | \\$True | \\$False |
+| \\$False | \\$False | \\$False |
+
+#!pwsh
+
+# Logical operators examples 
+$i, $j, $k = 11, 17, 23
+
+# and example
+$i -eq $j -and $j -lt $k
+
+# or example
+$i -eq $j -or $j -lt $k
+
+# -not, -and example
+-not ($i -eq $j) -or $j -lt $k
+
+#!markdown
+
+### Array Operators
+
+#!markdown
+
+Discussed briefly in the last section, array operators are used to create, access, and manipulate arrays. 
+
+In PowerShell (and many programming languages) arrays start at index 0 and the last value can be accessed using the array's length - 1 or position [-1].
+
+For example, if we create an array called $myArray using the code:
+```
+$myArray = 1..5
+```
+
+Then the array's variables can be accessed at the following positions:
+
+| $myArray = | 1 | 2 | 3 | 4 | 5 |
+|---| --- | --- | --- | --- | --- |
+| Position # | 0 | 1 | 2 | 3 | 4 |
+
+----
+
+PowerShell supports the following Array Operators:
+| Name | Syntax | Description | 
+|--- | --- | --- | 
+| Index | $array[n] | Returns the nth item in the array |
+| Index Range | $array[i..j] | Returns the ith through jth items in the array |
+| Index Assignment | $array[n] = value | Replaces the nth item in the array with the new value | 
+| Add (Append) | $array += "value" | Adds a value to the end of an array | 
+| Length | $array.length | Returns the length (number of elements) of the array |
+| Reverse | [array]::Reverse($array) | Returns the array in reverse order |
+
+#!pwsh
+
+# Practice
+$primes = 2, 3, 5, 7
+
+# Get the first element of the array
+
+# Get the third element of the array
+
+# Add (append) a new element to the array
+
+# Get the new element that you added to the array
+
+#!markdown
+
+Thought Exercise:
+
+What is the expected output of:
+```
+$someNums = 1, 3, 4, 6, 7, 8
+$someNums
+```
+What is the expected output of:
+```
+$someNums[3]
+```
+What is the expected output of:
+```
+$someNums[0]
+```
+What does the following function do?:
+```
+$someNums += 10
+```
+
+#!markdown
+
+Write your answers here:
+
+#!markdown
+
+### Putting it All Together
+
+#!markdown
+
+With instructor guidance, complete the following exercises. 
+
+#!pwsh
+
+# Create two variables and multiply them together to create a third variable
+# Using -gt and -lt, compare your new variable to the first two variables
+
+#!pwsh
+
+# Write a line of code that checks if a variable is even (divisible by 2) and returns $True if yes or $False if not
+# Hint: Modulo arithmetic (%) may help
+
+#!pwsh
+
+# Write a script that checks if a variable is divisible by both 3 and 4. Return $True if yes and $False if no
+
+#!pwsh
+
+# Write a script that checks if a variable is divisible by either 3 or 4 (XOR). Return $True if yes and $False if no
+
+#!pwsh
+
+# Create a string. Use the array access operator to access the last character in the string
+
+#!pwsh
+
+# Write a line of code that uses the comparator operator -ne
+
+#!markdown
+
+### Lesson 4 Knowledge Check
+
+#!markdown
+
+1. What are the four variable types discussed?
+
+2. What is the % operator called and what does it do?
+
+3. When declarting a string, what characters start and end the string?
+
+4. What logical operator returns \\$True when either input statement is \\$True?
+
+5. What logical operator returns \\$True only when both input statements are \\$True?
+
+6. What logical operator returns \\$True if and only if one input statement is \\$True?
+
+7. What index number is used to view the 4th item in an array?
+
+8. What does the array length operator return for an array of 19 items?
+
+#!markdown
+
+## Day 1 Coding Exercises
+
+#!markdown
+
+On your own, complete the following coding exercises. These exercises will help reinforce the coding concepts learned in Day 1's lessons. 
+
+#!markdown
+
+### Variable Exercises
+
+#!pwsh
+
+# 1. Assign a numeric value to a variable (such as $num)
+# 1a. Output the variable's type
+# 1b. Output the variable's type name
+
+#!pwsh
+
+# 2. Create a string variable
+
+#!pwsh
+
+# 3. Create an empty array
+
+#!pwsh
+
+# 4. Assign a series of 5 words to the array created in 3
+
+#!pwsh
+
+# 5. Append the string from 2 to the array from 3/4
+
+#!pwsh
+
+# 6. Create an array of length 10 using the range operator
+# 6a. Try creating an array of length 10 using decimal numbers with the range operator
+
+#!pwsh
+
+# 7. Append you numeric value from 1 to your array from 6
+
+#!pwsh
+
+# 8. Create a boolean variable
+
+#!pwsh
+
+# 9. (Extra Credit) Create a hash table with 5 key-value pairs
+# Note: Hash Tables will be covered in day 2
+
+#!pwsh
+
+# 10. Take your numeric value from 1 and cast it as a new string variable
+# 10a. Verify the new variable is a string
+
+#!pwsh
+
+# 11. Append you variable from 10 to your array from 4
+
+#!markdown
+
+### Operator Exercises
+
+#!pwsh
+
+# 12. Perform each arithmetic operation discussed (+, -, *, /, %). For these operations, define four numeric variables $a, $b, $c, and $d
+
+# 12a. (Optional) Exeperiemnt with using parenthesis () to change the order of operations
+
+#!pwsh
+
+# 13. Using the same numeric variables from 12, practice using each comparison operator
+# 13a. Greater than
+
+# 13b. Greater than or equal to
+
+# 13c. Less than
+
+# 13d. Less than or equal to
+
+# 13e. Equal to
+
+# 13f. Not equal to
+
+#!pwsh
+
+# 14. Using comparison statements from 13, perform the folowing logical operations
+# 14a. And
+
+# 14b. Or
+
+# 14c. Xor
+
+# 14d. Not
+
+#!markdown
+
+# Introduction to Scripting - Day 2
+
+#!markdown
+
+Today's topics include Useful PowerShell commands/techniques, Flow Control, and Loops.
+
+#!markdown
+
+### Lesson 5 - Useful PowerShell Commands/Techniques
+
+#!markdown
+
+This section will discuss the following techniques:
+- The "Help" Command
+- Error Checking
+- Changing Directories
+- Creating Files and Folders
+- Writing to the Screen
+- Writing to Files
+- Reading from Files
+
+#!markdown
+
+#### Error Checking
+
+#!markdown
+
+Error Checking/Handling is a way of recognizing potential errors in code, detecting them, and putting checks in place to allow a program to proceed or cleanly exit a program and provide feedback to the user.
+
+Unhandled errors will cause a script to crash and output an error message. For example:
+
+#!pwsh
+
+# Error Example
+$zulu = "Z"
+$exampleError = [int]$zulu + 5
+
+#!markdown
+
+#### Changing Directories
+
+#!markdown
+
+While manipulating files in PowerShell, you may need to change directories (i.e. C:\\) in order to access files or save them in the correct location. The folling commands will assist with changing directories:
+| Command | Description | 
+|--- | --- | 
+| Set-Location | Changes the directory |
+| sl, ch, chdir | Aliases (performs the same function as) Set-Location |
+| Set-Location -Path <Path> | Sets PowerShell's location to the given directory (Path) | 
+| cd .. | Goes from the current to the next higher directory |
+| cd ~ | Goes from the current to the "home" directory |
+| cd .\ | Used to access folders or files in the current directory |
+| Get-ChildItem | Lists all of the files and folder in the current directory | 
+| gci, ls, dir | Aliases (performs the same function as) Get-ChildItem |
+
+#!pwsh
+
+# example of moving 
+cd ..
+ls
+
+#!pwsh
+
+# moves back to the sub folder 
+# Note: you will need to change your input based on what your sub-folder is called
+# Note: If your sub-folder has spaces in its name, you need to use quotes ("") around the name or cd won't work
+cd .\"PowerShell Notebooks"
+ls
+
+#!pwsh
+
+# Example with -Path
+Set-Location -Path C:\Users\Public
+ls
+# Change back to your working folder
+Set-Location -Path C:\Users\graha\Documents\Notebooks\"PowerShell Notebooks"\
+ls
+
+#!markdown
+
+#### Creating Files and Folders
+
+#!markdown
+
+The New-Item (alias "ni") command is used to create files and folders.
+
+#!pwsh
+
+Get-Help New-Item
+
+#!markdown
+
+As shown with Get-Help (see above), New-Item can take multiple values. The syntax for some of the most useful commands are:
+
+Create a File:
+> New-Item -Name "example.txt" -ItemType File
+
+Create a Folder:
+> ni -name "Example Folder" -ItemType Directory
+
+#!markdown
+
+#### Writing to the Screen
+
+#!markdown
+
+On Day 1, you may have seen the command Write-Output (aliases: Write, echo, and "". This command is used to write output to the screen. 
+
+#!pwsh
+
+# Write-Output examples
+Write-Output "Hello World!"
+Write "Hello Student"
+echo "Echo... echo... echo"
+"What is my purpose"
+
+#!markdown
+
+Note: While you can use use Write-Output to redirect (or pipe) to another command, it has special formatting. Redirecting (the pipe command) will be covered in a later lesson. 
+
+#!markdown
+
+#### Writing to Files
+
+#!markdown
+
+It is often useful to write an output of a script to a file to access it later. There are two ways to write to a file:
+| Command | Syntax | Description | 
+|--- | --- | --- | 
+| Write to New File | \\$text > "example.txt" | Writes the input text to a new file, example.txt. If a file by that name already exists, it overwrites the file. |
+| Append to File | \\$text >> "example.txt" | Appends the input text to an existing file, example.txt. If the file has existing text, it is saved. (Note: this will create a new file if the filename does not exist) |
+
+#!markdown
+
+#### Reading Files
+
+#!markdown
+
+Files can be read using the Get-Content (aliases: gc, cat, type) function. 
+
+#!pwsh
+
+Get-Content address.txt
+
+#!markdown
+
+#### Lesson 5 Practice
+
+#!markdown
+
+With instructor oversight, perform the following:
+
+#!pwsh
+
+# Write "PowerShell is the best block" to the screen
+
+#!pwsh
+
+# Write "PowerShell is the best block" to a file named psblock.txt
+
+#!pwsh
+
+# View all items in your current directory
+
+#!pwsh
+
+# Execute the following line of code and view the results
+notepad psblock.txt
+
+#!pwsh
+
+# Execute the following line of code and view the results
+gc psblock.txt
+
+#!markdown
+
+### Lesson 6 - User Input
+
+#!markdown
+
+#### The Read-Host Command
+
+#!markdown
+
+The Read-Host command allows the script writer to get input from the user. Note: as PowerShell uses implicit type casting by default, there is no error checking to make sure the correct type is passed to the function. 
+```
+$user = Read-Host "Please enter your name"
+```
+
+#!markdown
+
+If you need a specific type, like integer, then you can type cast.
+```
+[int]$age = Read-Host "Please enter your age"
+```
+
+Alternative, you can type cast like this:
+```
+$age = [int]Read-Host "Please enter your age"
+```
+
+The second option is better when reading reading multiple numbers, such as asking for many numbers for an array of numbers (flow control will be covered next):
+```
+$myArray = @()
+for ($i = 1, $i -le 10, $i++) {
+    $myArray += [int]Read-Host "Please enter a number"
+}
+```
+
+#!pwsh
+
+$age = Read-Host "Please enter your age"
+$age
+
+#!markdown
+
+Like other functions, the Read-Host command has optional options that can change how it funtions. The -AsSecureString option can be used to input a password and it will save the input string as a SecureString.
+```
+$pwd = Read-Host "Enter a password" -AsSecureString
+```
+
+#!markdown
+
+### Lesson 7 - Flow Control
+
+#!markdown
+
+Flow Control allows for the programmer to run multiple items or processes in the correct order. 
+
+The types of Flow Control techniques we will cover are:
+- If/Else Statements
+- 
+
+#!markdown
+
+#### If/Else Statements
+
+#!markdown
+
+If/Else statements are used to make a decision between two possible (Boolean) options. For example, you might want to output whether or not a number is  even and have seperate outputs for the \\$True (even) and \\$False (odd).
+
+These statements are formated as:
+- If (keyword)
+- conditional statement (i.e. \\$PowerShellGrade -ge 80) - either \\$True or \\$False
+- code to execute if \\$True (i.e. Write-Host "You Passed!")
+- Else (keyword)
+- code to execute if \\$False (i.e. Write-Host "Personnel needs a few good officers")
+
+#!pwsh
+
+# If/Else Statement Example
+$x = 9
+if ($x -lt 10) {
+    Write-Host "$x is less than 10"
+} else {
+    Write-Host "$x is greater than or equal to 10"
+}
+
+#!pwsh
+
+# Exercise
+# Write and If/Else statement that evaluates if a number ($x) is even or odd and outputs either "It is Even" or "It is odd"
+
+#!markdown
+
+If there are more than two possible options, you can use the elseif. Unlike Else, elseif takes its own conditional statement. 
+
+#!pwsh
+
+# If/Elseif/Else example
+$wx = "Cloudy with a chance of meatballs"
+if ($wx -eq "rain") {
+    Write-Host "Don't forget a coat or umbrella"
+} elseif ($wx -eq "sun") {
+    Write-Host "Don't forget a hat or sunglasses"
+}
+else {
+    Write-Host "Brrr... don't forget your fleece and watch cap"
+}
+
+#!markdown
+
+#### Switch Statements
+
+#!markdown
+
+Switch statements are used to check for many conditional statements at once. When it checks each statement, it will execute if it is \\$True. 
+
+Note: "break" can be used to terminate a switch statement if a specific case is matched. 
+
+#!pwsh
+
+# Example 1 - Get the day of the week
+$day = 3
+switch ( $day )
+{
+    0 { $result = 'Sunday'    }
+    1 { $result = 'Monday'    }
+    2 { $result = 'Tuesday'   }
+    3 { $result = 'Wednesday' }
+    4 { $result = 'Thursday'  }
+    5 { $result = 'Friday'    }
+    6 { $result = 'Saturday'  }
+}
+
+Write-Host "The day of the week is: $result"
+
+# Example 2 - Check for divisors of $x
+# Uses modulo arithmetic to check each conditional statement vs. explicit matching
+$x = 12
+switch($x){
+    {$x % 2 -eq 0} { Write-Host "$x is divisible by 2" }
+    {$x % 3 -eq 0} { Write-Host "$x is divisible by 3" }
+    {$_ % 4 -eq 0} { Write-Host "$x is divisible by 4"; break} # break will exit the switch statment (won't keep checking other statements)
+    {$x % 5 -eq 0} { Write-Host "$x is divisible by 5" }
+    {$x % 6 -eq 0} { Write-Host "$x is divisible by 6" }
+    {$_ % 7 -eq 0} { Write-Host "$x is divisible by 7" }
+    default {Write-Host "$x has no divisors, so it must be a prime number!"}
+}
+
+#!markdown
+
+#### If/Else and Switch Exercises
+
+#!markdown
+
+With instructor guidance, complete the following exercises.
+
+#!pwsh
+
+# 1. Create an If/Else statement that evaluates if a number ($x) is dividible by 3
+
+#!pwsh
+
+# 2. Write a script that evaluates two numbers and prints the greater number
+
+#!pwsh
+
+# 3. Create a switch statement that asks a user their age and prints one of four statements based on how old they are:
+# child if under 13
+# teenager if 13-19
+# young adult if 20-29
+# older adult if 30+
+
+#!pwsh
+
+# 4. Create a script that evaluates a grade and returns "Invalid" if the number is less than 0 or greater that 100. Otherwise, it will assign a letter grade (A, B, C, D, F) for valid numbers.
+
+#!markdown
+
+#### Loops Overview
+
+#!markdown
+
+Loops are used for repetitive tasks or when you need to evaluate a condition until it is \\$True. PowerShell uses the following loop types:
+- While
+    - Do-While
+    - Do-Until
+- For
+- Foreach
+
+Note: Sometimes you will write loops that will run forever (or infinite loops). To stop these loops from running forever, you can do one of the following steps:
+1. Hit CTRL + C - This cancels out the current program
+2. Hit the Box (red in PowerShell ISE/grey in Jupyter Notebooks) - This also cancels out the current program
+
+![image.png](attachment:cd785779-f30d-4a45-b5ef-4dd9653349b5.png)
+
+#!markdown
+
+#### While Loops (While, Do-While, Do-Until)
+
+#!markdown
+
+##### While Loops
+
+While loops execute some code while an input condition is \\$True. A While loop will check the condition first, execute the code, and then check the condition again. 
+
+![image.png](attachment:be9c1ed6-c3ae-4490-9ee8-4ff4577ec8bc.png)
+
+#!markdown
+
+While loops are formatted as follows:
+- While (keyword)
+- Conditional Statement
+- Code to Execute
+
+Note: when iterating over numbers or values, don't forget to actual do the iteration (addition, subtraction, change, etc.).
+
+#!pwsh
+
+# While Loop Example
+$x = 5
+while ($x -ne 1) {
+    Write-Output "$x is not 1"
+    $x -= 1
+}
+
+#!pwsh
+
+# Though Exercise - What is the expected output for the below code? Try running it
+$x = 1
+while ($x -lt 12) {
+    Write-Host "$x is less than 12"
+    $x += 1
+}
+
+#!pwsh
+
+# Though Exercise 2 - What is the expected output for the below code? Try running it
+$x = 3
+while ($x -ne 1) {
+    "x is $x"
+    "$x is not 1"
+    $x -= 1
+}
+
+#!pwsh
+
+# Exercise - Use a while loop to count from 1 to 10
+
+#!markdown
+
+##### Do-While Loops
+
+#!markdown
+
+Do-While looops are very similar to While loops, but they check the conditional statement at the end before deciding to condinue. 
+
+![image.png](attachment:b027b7a1-8e4b-4e4f-bc78-2e3ca577b5ff.png)
+
+#!markdown
+
+Do-While loops are formatted as:
+- Do (keyword)
+- Code to execute
+- While (keyword)
+- Conditional Statement
+
+#!pwsh
+
+# Do-While Example
+$x = 5
+do {
+    Write-Output "$x is not 1"
+    $x -= 1
+} while ($x -ne 1) 
+
+#!markdown
+
+##### Do-Until
+
+#!markdown
+
+Do-Until loops are similar to Do-While loops in structure and While loops in function, however they will continue to run as long as the conditional statement is \\$False (instead of While \\$True).
+
+![image.png](attachment:c6745c5a-3736-4ea0-9c5f-db66bec863ff.png)
+
+#!markdown
+
+Do-Until are formatted as:
+- Do (keyword)
+- Code to execute
+- Until (keyword)
+- Conditional Statement
+
+#!pwsh
+
+# Do-Until Example
+do {
+    [int]$num = Read-Host "Please enter a number between 1 and 10"
+} until ($num -ge 1 -and $num -le 10)
+
+#!markdown
+
+#### For Loops (For, Foreach)
+
+#!markdown
+
+##### For Loops
+
+For Loops are used to iterate over a series of numeric items. Unlike While loops, you do not need to automatically iterate (add, subtract, multiply, etc.) within the loop's code, as the iteration is specified when the for loop is declared. 
+
+For Loop structure:
+- For (keyword)
+- Variable initialization
+- Conditional Statement
+- Variable Iteration/Modification
+- Code to Execute
+
+Note: the variable, conditional statement, and iteration are seperated by semicolons (;). 
+
+#!pwsh
+
+for ($i = 0; $i -lt 10; $i++) {
+    "$i < 10"
+}
+
+#!pwsh
+
+# What is wrong with the following For Loop?
+for ($i = 0, $i -lt 10, $i++) {
+    "$i < 10"
+}
+
+#!markdown
+
+Extra Nerd Data: Loops can be nested within for loops.
+
+#!pwsh
+
+for ($i = 1; $i -le 10; $i++) {
+    for ($j = 1; $j -le 10; $j++) {
+        if ( $i -eq $j ) {
+            $k = $i * $j
+            "The square of $i is $k"
+        }
+    }
+}
+
+#!markdown
+
+##### Foreach Loops
+
+#!markdown
+
+Foreach Loops are used to iterate through each element in a list (array) of items. 
+
+Foreach Loops are formatted as:
+- Foreach (keyword)
+- Variable Name
+- In (keyword)
+- Array Object
+- Code to Execute
+
+#!pwsh
+
+# Foreach Loop Example
+$nums = 1..5
+foreach ($n in $nums){
+    Write-Host "The index of $n is:" ($n--)
+}
+
+#!markdown
+
+#### Flow Control Exercises
+
+#!markdown
+
+On your own, complete the following exercises.
+
+#!pwsh
+
+# 1a. Create a while loop that counts from 5 to 100
+
+# 1b. Create a for loop that counts from 5 to 100
+
+#!pwsh
+
+# 2. Create a script that counts from 1 to 10, checking and printing each time if the current number is odd or even
+# Hint: you will have to combine flow control techniques
+
+#!pwsh
+
+# 3. Create an array of 5 numbers. Using foreach and an if/else statement, evaluate if each number is divisible by 3. 
+# If yes, print the number "is divisible by 3"
+
+#!pwsh
+
+# 4a. Create a Do-Until loop that counts by 2 until a number is greater than 20. 
+
+# 4b. Create a Do-While loop that counts by 2 until a number is greater than 20. 
+
+#!pwsh
+
+# 5. Create an array that lists your 5 favorite animals. Create a foreach loop that prints each animal
+
+#!pwsh
+
+# 6. Create a while loop that prints the next number in the fibonnaci sequence, starting at 1, 1, until $next -ge 100
+# Note: The fibonnaci sequence takes the last two number (starting at 1, 1) and adds them together for the next number
+# The sequence is 0, 1, 1, 2, 3, 5, 8, 13, 21...
+# Reference: https://en.wikipedia.org/wiki/Fibonacci_sequence
+
+#!markdown
+
+## Day 3 - Functions and Commands in PowerShell
+
+#!markdown
+
+### Lesson 8 - Functions
+
+#!markdown
+
+A function is a pre-defined set of code. Functions will often have input and/or output variables.
+
+Functions are useful for when a operation needs to be repeated often and simplifies the readability of your code. 
+
+This section will cover:
+- Built-in Functions
+- User-defined Functions
+
+#!markdown
+
+#### Built-In Functions
+
+#!markdown
+
+Like many languages, PowerShell has a large set of built-in functions. We have already used a couple, including:
+- Write-Host
+- Read-Host
+- Get-Variable
+- Get-Type
+
+These predefined functions simplify coding as the coder does not need to re-write both simple and complex operations themselves.
+
+#!markdown
+
+#### User-defined Functions
+
+#!markdown
+
+User-defined functions are used for when PowerShell (or your language of choice) does not already have the built-in, but are still necessary or useful. Some examples of user-defined functions are:
+- AFNet Ops Workstation Health Check
+- AFNet Ops Workstation Information
+- Adding a printer on a network
+- Some other, localized task
+
+Functions only need to be declared once, but they can be called multiple times (including by other functions). 
+
+Functions (without input/parameters) are formated as follows:
+- Function (keyword)
+- Function Name (unique, cannot be another function name)
+- Code to Execute
+
+Note: the code to execute needs to be encapsulated in curly brackets {}.
+
+#!pwsh
+
+# Function Example
+
+# Define the function
+function write_secs_per_day {
+    $hours = 24
+    $minutes = 60
+    $seconds = 60
+    return $hours * $minutes * $seconds
+}
+
+# Call the function
+write_secs_per_day
+
+#!pwsh
+
+# Exercise - Write a function that outputs your name
+
+#!markdown
+
+##### Input Parameters
+
+Functions can also have input parameters, which are variables that are passed into the function by another piece of code.
+
+Functions (with parameters) are formated as follows:
+- Function (keyword)
+- Function Name (unique, cannot be another function name)
+- Parameter(s) 
+- Code to Execute
+
+Note: when calling the function, parameters are seperated by spaces (no parenthesis and no commas)!
+
+#!pwsh
+
+# Function with parameters example
+
+# Function declaration
+function get_area_circle ($radius) {
+    return $radius * $radius * 3.14
+}
+
+# calling the function
+get_area_circle 5
+
+get_area_circle 10
+
+#!pwsh
+
+# Exercise - Write a function that divides an input number by 2 and call the function
+
+#!pwsh
+
+# Function with multiple parameters example
+
+# Function declaration
+function get_area_rectangle ($length, $width) {
+    return $length * $width
+} 
+
+# Calling the function
+get_area_rectangle 5 10
+
+get_area_rectangle 2 14
+
+#!pwsh
+
+# Function with multiple parameters example
+
+# Function declaration
+function itinerary ($a, $b, $c) {
+    write "I plan to go to work at $a AM"
+    write "I plan to eat lunch at $b"
+    write "I plan to sleep at $c PM"
+}
+
+# Calling the function
+itinerary 6 12 9
+
+#!pwsh
+
+# Though Exercise - What do you think happens when you run this code? Try running it
+itinerary (6, 12, 9)
+
+#!markdown
+
+##### Returning Information
+Functions will, by default, return variable information declared within the function.
+
+#!pwsh
+
+# Function return example
+
+# Function declaration
+function what_color_flag ($temp) {
+
+    switch ($temp){
+
+        {$temp -lt 81.9}{"White"}
+        {$temp -lt 84.9}{"Green"}
+        {$temp -lt 87.9}{"Yellow"}
+        {$temp -lt 89.9}{"Red"}
+        default {"Black"}
+    }
+}
+
+# function calling
+$flag_color = what_color_flag 83.2
+$flag_color
+
+#!markdown
+
+##### Return Keyword
+You may have noticed the "return" keyword in one of our example functions earlier. Return is an optional keyword used to send a variable or variables (array) from a function to the higher level (where the function was called). 
+
+Similar to the break statement, the return statement will stop the function at that point and immediately return the value.
+
+Note: while optional, the return keyword should be used for readability.
+
+#!pwsh
+
+# Function with return keyword example
+
+# Function declaration
+function what_color_flag ($temp) {
+
+    switch ($temp){
+
+        {$temp -lt 81.9}{return "White"}
+        {$temp -lt 84.9}{return "Green"}
+        {$temp -lt 87.9}{return "Yellow"}
+        {$temp -lt 89.9}{return "Red"}
+        default {"Black"}
+    }
+}
+
+# function calling
+$flag_color = what_color_flag 83.2
+$flag_color
+
+#!markdown
+
+#### Testing Functions and Troubleshooting
+
+#!markdown
+
+The easiest way to test a function is to isolate it. Isolation generally means to run it alone, or with a few test cases, to verify that it works as expected. 
+
+#!pwsh
+
+# Isolation Example
+
+# Example function
+function buildArray {
+    $evenArray = @() # TODO: Define function
+    $newArray = 1..5
+
+    foreach ($n in $newArray) {
+        $evenArray += $n * 2
+    }
+
+    # dividesBy4 $evenArray
+    $evenArray
+}
+
+# Another example function
+function dividesBy4 ($inArray) {
+    foreach ($item in $inArray) {
+        if ($item % 4 -eq 0) {
+            write "$item is divisible by 4"
+        }
+    }
+}
+
+# test the divideBy4 function using a pre-defined array - Isolated from the other function
+$testArray = @(2, 4, 16, 3, 5, 11)
+dividesBy4 $testArray
+
+#!markdown
+
+Other Troubleshooting Tips & Tricks:
+- Read your code
+  - Errors will tell you where your code broke down
+  - Syntax matters
+- Test your functions 
+    - Test functions independently (in isolation)
+    - Confirm test results meet your expectations
+- Insert test statements. Example:
+    - Write "Line xx $someVariable" to see where/what it is
+    - Write test output values for disconnected functions
+
+#!markdown
+
+Extra Nerd Data: 
+- PowerShell support unit testing using Penster. While beyond the scope of this course, you can read about this here: https://devblogs.microsoft.com/scripting/unit-testing-powershell-code-with-pester/
+- PowerShell ISE also supports breakpoints: https://learn.microsoft.com/en-us/powershell/scripting/windows-powershell/ise/how-to-debug-scripts-in-windows-powershell-ise?view=powershell-7.3 
+
+#!pwsh
+
+# Though Exercise - What is the expected output of the following code? Try running it
+function getTimesResult ($a, $b) {
+    $c = $a * $b
+    Write-Output $c
+}
+
+getTimesResult 6 7
+
+#!markdown
+
+#### Scope
+
+#!markdown
+
+A common coding mistake is trying to access a variable in the wrong "scope" or level of code. A variable that exists within a function is known as a "local" variable. Variables seen across a script are known as "global" or "script" variables.
+
+Variable names can be repeated, so scope matters!
+
+#!pwsh
+
+# Scope example
+$num = 10
+$num1 = 10
+
+function checkScope {
+    $num = 20
+    $num
+    $script:num1 = 20
+    $num1
+    $num2 = 30
+    $num2
+}
+
+checkScope
+$num
+$num1
+$num2
+
+#!markdown
+
+#### Function Exercises
+
+#!pwsh
+
+# 1. Write a script with a function that outputs "Hello World!"
+
+#!pwsh
+
+# 2. Write a script that uses a function to evaluate whether a given number (parameter) is odd or even and returns the result
+
+#!pwsh
+
+# 3. Take any of the 3 flow control exercise and turn them into functions
+# 3a. 
+
+# 3b. 
+
+# 3c. 
+
+#!markdown
+
+### Lesson 9 - Modules
+
+#!markdown
+
+Modules are built-in as functions, but are saved as PowerShell Script Modules (.psm1 filetype).
+
+To access a function from another file, save it a filename.psm1 in the same folder as you are currenlty working in. 
+
+Unlike functions, modules are always accessible when you are running PowerShell (since they are already defined). Modules can be accessed anywhere in a script.
