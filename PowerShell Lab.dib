@@ -24,6 +24,10 @@ PowerShell Integrated Scripting Environment (ISE) is a lightweight development e
 - Allows for the development and execution of multiple scripts
 - Permits debugging through breakpoints, spell checking, etc.
 
+Most importantly, PowerShell ISE is approved for the AFNet and comes pre-installed.
+
+![PowerShell ISE GUI](image-1.png)
+
 #!markdown
 
 ## Lesson 2 - Planning
@@ -195,7 +199,7 @@ Write-Output $x.GetType().Name
 
 #!markdown
 
-More information on Numbers (extra nerd data) can be found here: https://devblogs.microsoft.com/scripting/understanding-numbers-in-powershell/ 
+Extra Nerd Data: More information on Numbers can be found here: https://devblogs.microsoft.com/scripting/understanding-numbers-in-powershell/ 
 
 #!markdown
 
@@ -254,7 +258,7 @@ Special notes on index:
 - The last item in an array can be accessed using [-1]
 - Individual array values can be updated using arr[n] = new_value
 
-Additional information on arrays can be found here (extra nerd data): https://learn.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-arrays?view=powershell-7.3
+Extra Nerd Data: Additional information on arrays can be found here: https://learn.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-arrays?view=powershell-7.3
 
 #!markdown
 
@@ -331,7 +335,7 @@ PowerShell has operators for the following types of operations (and more):
 
 Arithmetic/Unary operators are specialized for mathematics. They follow the standard order of operation (PEMDAS). 
 
-| Operator | Name | Example | Example Output |
+| Operator | Name/Description | Example | Example Output |
 |---| --- | --- | ---|
 | + | Add | 1 + 2 | 3 |
 | - | Subtract | 7 - 2 | 5 | 
@@ -376,7 +380,7 @@ $x
 
 #!markdown
 
-Comparison operators are used to compare the values assigned to two variables. Once the operator has assessed the comparison, it will return a Boolean value (True/False). 
+Comparison operators are used to compare the values assigned to two variables. Once the operator has assessed the comparison, it will return a Boolean value ($True or $False). 
 
 Comparison operations are frequently used to make decisions for Flow Control, which will be discussed on Day 2. 
 
@@ -418,21 +422,21 @@ Like comparison operations, logical operators are also frequently used to make d
 PowerShell supports the following logical operators:
 | Operator | Description | Example | Example Output |
 |---| --- | --- | --- |
-| -and | And: Returns \\$True if both statements are \\$True | \\$True -and \\$False | \\$False |
-| -or (!) | Or: Returns \\$True if either statement is \\$True | \\$True -or \\$False | \\$True |
-| -xor | Exclusive Or: Returns \\$True if either statement is \\$True, but not both | \\$True -xor \\$True | \\$False |
-| -not | Not: Returns the opposite of a statement's value | -not \\$True | \\$False |
-| -in | In: Returns if the input variable is in the array | \\$x -in \\$y | \\$True |
+| -and | And: Returns $True if both statements are $True | $True -and $False | $False |
+| -or (!) | Or: Returns $True if either statement is $True | $True -or $False | $True |
+| -xor | Exclusive Or: Returns $True if either statement is $True, but not both | $True -xor $True | $False |
+| -not | Not: Returns the opposite of a statement's value | -not $True | $False |
+| -in | In: Returns if the input variable is in the array | $x -in $y | $True |
 
 ---
 
 The output of logical operators can be represented with Truth tables. For example, here is the Truth table for AND:
 | A | B | Output |
 |---| --- | --- |
-| \\$True | \\$True | \\$True |
-| \\$True | \\$False | \\$False |
-| \\$False | \\$True | \\$False |
-| \\$False | \\$False | \\$False |
+| $True | $True | $True |
+| $True | $False | $False |
+| $False | $True | $False |
+| $False | $False | $False |
 
 #!pwsh
 
@@ -516,9 +520,9 @@ What does the following function do?:
 $someNums += 10
 ```
 
-#!markdown
+#!pwsh
 
-Write your answers here:
+# Write your answers here:
 
 #!markdown
 
@@ -566,11 +570,11 @@ With instructor guidance, complete the following exercises.
 
 3. When declarting a string, what characters start and end the string?
 
-4. What logical operator returns \\$True when either input statement is \\$True?
+4. What logical operator returns $True when either input statement is $True?
 
-5. What logical operator returns \\$True only when both input statements are \\$True?
+5. What logical operator returns $True only when both input statements are $True?
 
-6. What logical operator returns \\$True if and only if one input statement is \\$True?
+6. What logical operator returns $True if and only if one input statement is $True?
 
 7. What index number is used to view the 4th item in an array?
 
@@ -719,16 +723,14 @@ $exampleError = [int]$zulu + 5
 #!markdown
 
 While manipulating files in PowerShell, you may need to change directories (i.e. C:\\) in order to access files or save them in the correct location. The folling commands will assist with changing directories:
-| Command | Description | 
-|--- | --- | 
-| Set-Location | Changes the directory |
-| sl, ch, chdir | Aliases (performs the same function as) Set-Location |
-| Set-Location -Path <Path> | Sets PowerShell's location to the given directory (Path) | 
-| cd .. | Goes from the current to the next higher directory |
-| cd ~ | Goes from the current to the "home" directory |
-| cd .\ | Used to access folders or files in the current directory |
-| Get-ChildItem | Lists all of the files and folder in the current directory | 
-| gci, ls, dir | Aliases (performs the same function as) Get-ChildItem |
+| Command | Aliases (if applicable) | Description | 
+|--- | ---| --- | 
+| Set-Location | sl, ch, chdir | Changes the directory |
+| Set-Location -Path \<PATH> | cd \<PATH> |Sets PowerShell's location to the given directory PATH | 
+| Set-Location .. | cd .. | Goes from the current to the next higher directory |
+| Set-Location ~ | cd ~ | Goes from the current to the "home" directory |
+| Set-Location .\ | cd .\ | Used to access folders or files in the current directory |
+| Get-ChildItem | gci, ls, dir | Lists all of the files and folder in the current directory | 
 
 #!pwsh
 
@@ -770,10 +772,18 @@ Get-Help New-Item
 As shown with Get-Help (see above), New-Item can take multiple values. The syntax for some of the most useful commands are:
 
 Create a File:
-> New-Item -Name "example.txt" -ItemType File
+```
+New-Item -Name "example.txt" -ItemType File
+```
 
 Create a Folder:
-> ni -name "Example Folder" -ItemType Directory
+```
+ni -name "Example Folder" -ItemType Directory
+```
+
+#!pwsh
+
+# Try creating a new file and new folder here
 
 #!markdown
 
@@ -781,11 +791,11 @@ Create a Folder:
 
 #!markdown
 
-On Day 1, you may have seen the command Write-Output (aliases: Write, echo, and "". This command is used to write output to the screen. 
+On Day 1, you may have seen the command Write-Output. This command is used to write output to the screen. 
 
 #!pwsh
 
-# Write-Output examples
+# Write-Output examples and aliases
 Write-Output "Hello World!"
 Write "Hello Student"
 echo "Echo... echo... echo"
@@ -804,8 +814,8 @@ Note: While you can use use Write-Output to redirect (or pipe) to another comman
 It is often useful to write an output of a script to a file to access it later. There are two ways to write to a file:
 | Command | Syntax | Description | 
 |--- | --- | --- | 
-| Write to New File | \\$text > "example.txt" | Writes the input text to a new file, example.txt. If a file by that name already exists, it overwrites the file. |
-| Append to File | \\$text >> "example.txt" | Appends the input text to an existing file, example.txt. If the file has existing text, it is saved. (Note: this will create a new file if the filename does not exist) |
+| Write to New File | $text > "example.txt" | Writes the input text to a new file, example.txt. If a file by that name already exists, it overwrites the file. |
+| Append to File | $text >> "example.txt" | Appends the input text to an existing file, example.txt. If the file has existing text, it is saved. (Note: this will create a new file if the filename does not exist) |
 
 #!markdown
 
@@ -879,15 +889,30 @@ $age = [int]Read-Host "Please enter your age"
 The second option is better when reading reading multiple numbers, such as asking for many numbers for an array of numbers (flow control will be covered next):
 ```
 $myArray = @()
-for ($i = 1, $i -le 10, $i++) {
+for ($i = 1; $i -le 10; $i++) {
     $myArray += [int]Read-Host "Please enter a number"
 }
 ```
 
 #!pwsh
 
+# Example asking the user to enter their age
 $age = Read-Host "Please enter your age"
 $age
+
+#!pwsh
+
+#example with explicit typing
+[int]$age = Read-Host "Please enter your age"
+$age
+
+#!pwsh
+
+$myArray = @()
+for ($i = 1; $i -le 3; $i++) {
+    $myArray += Read-Host "Please enter a number"
+}
+$myArray
 
 #!markdown
 
@@ -895,6 +920,11 @@ Like other functions, the Read-Host command has optional options that can change
 ```
 $pwd = Read-Host "Enter a password" -AsSecureString
 ```
+
+#!pwsh
+
+$pwd = Read-Host "Enter a password" -AsSecureString
+$pwd
 
 #!markdown
 
@@ -1504,7 +1534,7 @@ Other Troubleshooting Tips & Tricks:
 
 #!markdown
 
-Extra Nerd Data: 
+Extra Nerd Data
 - PowerShell support unit testing using Penster. While beyond the scope of this course, you can read about this here: https://devblogs.microsoft.com/scripting/unit-testing-powershell-code-with-pester/
 - PowerShell ISE also supports breakpoints: https://learn.microsoft.com/en-us/powershell/scripting/windows-powershell/ise/how-to-debug-scripts-in-windows-powershell-ise?view=powershell-7.3 
 
