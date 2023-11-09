@@ -70,17 +70,12 @@ jupyter lab
 
 ### Troubleshooting Jupyter Notebook Setup
 
-If you cannot get the program "pip" to run, you may need to adjust your Execution path. This can be done with the following command and restarting PowerShell:
+If you cannot get the program "pip" or "python" to run, you may need to adjust your Execution path. This can be done with the following command and restarting PowerShell:
 ```
-setx PATH "%PATH%;C:\%%\Python\Python311\Scripts\"
+setx PATH "%PATH%;C:\Users\graha\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\graha\AppData\Local\Programs\Python\Python311\"
 ```
 
-Note: the %% represents the path to the Python folder. It may vary based on your install location
-
-If you cannot get "python" to run from PowerShell, you may need to adjust your Execution Path again to:
-```
-setx PATH "%PATH%;C:\%%\Python\Python311\"
-```
+Note: the %% represents the path to the Python folder. It may vary based on your install location and Python version. If you have Anaconda, Miniconda, or another version of Python installed, you may need to have more execution paths.
 
 # Contributors
 Author: Graham Johnson
