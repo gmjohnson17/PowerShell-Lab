@@ -1,15 +1,13 @@
 # Purpose
-This Jupyter notebook was developed for Undergraduate Cyber Warfare (UCWT) students as an optional companion tool to accompany instruction for the 17X Block III course: Introduction to Scripting (PowerShell).
+This Jupyter notebook was developed to assist students with learning how to script using PowerShell.
 
-Understanding this code and completion of these exercises does not, in and of itself, constitute sufficient preparation for the completion of the 17X course.
-
-This README contains instructions to setup using VSCode (use the .dib file) or Jupyter notebooks (use the .ipynb file). Both setups are acceptable, however Visual Studios is preferable as it provides an Interactive Development Environment (IDE) for later projects. 
+This README contains instructions to setup using VSCode (use the .dib file) or Jupyter notebooks (use the .ipynb file). Both setups are acceptable.
 
 # Prerequisites - All
 
 1. PowerShell 7 for Windows (7.3): https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.3
 
-2. .NET SDK (download blocked on AWAKEN): https://dotnet.microsoft.com/en-us/download
+2. .NET SDK: https://dotnet.microsoft.com/en-us/download
 
 # Setup
 
@@ -41,7 +39,7 @@ Note: VSCode does not automatically save your work. Do not forget to save any ch
 
 ## Jupyter Notebook Setup
 
-1. Download Python 3.11: https://www.python.org/downloads/ 
+1. Download Python 3.11 (or later): https://www.python.org/downloads/ 
 
 2. Open PowerShell
    
@@ -86,7 +84,7 @@ I am not accepting any contributions at this time.
 
 # LICENSE
 
-Copyright 2023 Graham Johnson / United States Air Force
+Copyright 2023 Graham Johnson
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
